@@ -30,6 +30,11 @@ class ScaffoldExample extends StatelessWidget {
             )
           ],
         ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.lightGreen,
+          child: Icon(Icons.call_missed),
+          onPressed: () => debugPrint("Quit Pushing me!"),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
