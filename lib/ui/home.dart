@@ -30,6 +30,17 @@ class ScaffoldExample extends StatelessWidget {
             )
           ],
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.airplay), title: Text("First")),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.contact_phone), title: Text("Second")),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.add_location), title: Text("Third")),
+          ],
+          onTap: (int index) => debugPrint("Tapped item : $index"),
+        ),
         backgroundColor: Colors.blueAccent.shade400,
         body: Container(
           alignment: Alignment.center,
@@ -37,6 +48,9 @@ class ScaffoldExample extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomButton()
+
+              // for a simple button use InkWell
+
               // InkWell(
               //   child: Text(
               //     "Tap Me!",
