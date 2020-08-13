@@ -17,7 +17,7 @@ List quotes = [
   "Even though you’re fed up, you got to keep ya head up. – 2Pac, Keep Ya Head Up",
   "No law’s gonna change us, we have to change us. – Macklemore and Ryan Lewis, Same Love",
   "It’s only human to express the way you really feel, but that same humanity is my Achilles’ heel. A leopard can’t change his spots and never will; So, I’m forever I’ll, now I can never chill. – Black Thought",
-  "And the land of the free is full of free loaders, leave us dead in the street to be your organ donors. – Joey Bada$$, Land of the Free",
+  "And the land of the free is full of free loaders, leave us dead in the street to be your organ donors. – Joey Badass - Land of the Free",
 ];
 
 class _WisdomState extends State<Wisdom> {
@@ -28,7 +28,9 @@ class _WisdomState extends State<Wisdom> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(quotes[_index % quotes.length]),
+            Text(quotes[_index %
+                quotes
+                    .length]), // this allows the index to loop based on the lenght
             FlatButton.icon(
                 onPressed: _showQuote,
                 icon: Icon(Icons.music_note),
