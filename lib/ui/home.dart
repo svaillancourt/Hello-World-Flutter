@@ -12,6 +12,8 @@ class BillSplitter extends StatefulWidget {
   _BillSplitterState createState() => _BillSplitterState();
 }
 
+// these are private values
+
 int _tipPercentage = 0;
 int _personCounter = 1;
 double _billAmount = 0.0;
