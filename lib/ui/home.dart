@@ -18,7 +18,6 @@ List quotes = [
   "No law’s gonna change us, we have to change us. – Macklemore and Ryan Lewis, Same Love",
   "It’s only human to express the way you really feel, but that same humanity is my Achilles’ heel. A leopard can’t change his spots and never will; So, I’m forever I’ll, now I can never chill. – Black Thought",
   "And the land of the free is full of free loaders, leave us dead in the street to be your organ donors. – Joey Badass - Land of the Free",
-  "this is just a test – Stephane - Comfree",
 ];
 
 class _WisdomState extends State<Wisdom> {
