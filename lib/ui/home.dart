@@ -61,19 +61,60 @@ class _BillSplitterState extends State<BillSplitter> {
               child: Column(
                 children: <Widget>[
                   TextField(
-                      keyboardType:
-                          TextInputType.numberWithOptions(decimal: true),
-                      style: TextStyle(color: Colors.grey),
-                      decoration: InputDecoration(
-                          prefixText: "Bill Amount",
-                          prefixIcon: Icon(Icons.attach_money)),
-                      onChanged: (String value) {
-                        try {
-                          _billAmount = double.parse(value);
-                        } catch (expection) {
-                          _billAmount = 0.0;
-                        }
-                      }),
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    style: TextStyle(color: Colors.purple),
+                    decoration: InputDecoration(
+                        prefixText: "Bill Amount",
+                        prefixIcon: Icon(Icons.attach_money)),
+                    onChanged: (String value) {
+                      try {
+                        _billAmount = double.parse(value);
+                      } catch (expection) {
+                        _billAmount = 0.0;
+                      }
+                    },
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Split",
+                        style: TextStyle(color: Colors.grey.shade700),
+                      ),
+                      Row(
+                        children: [
+                          InkWell(
+                              onTap: () {
+                                setState(() {
+                                  if (_personCounter > 1) {
+                                    _personCounter--;
+                                  } else {
+                                    // do nothing
+                                  }
+                                });
+                              },
+                              child: Container(
+                                width: 40.0,
+                                height: 40.0,
+                                margin: EdgeInsets.all(10.0),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(7.0),
+                                    color: Colors.pink.withOpacity(0.1)),
+                                child: Center(
+                                  child: Text(
+                                    "-",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17.0),
+                                  ),
+                                ),
+                              ))
+                        ],
+                      )
+                    ],
+                  )
                 ],
               ),
             )
