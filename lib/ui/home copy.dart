@@ -20,7 +20,6 @@ class _BillSplitterState extends State<BillSplitter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //this is the body of your app
       body: Container(
         margin: // this acts as vh vw would in css
             EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.080),
@@ -30,7 +29,6 @@ class _BillSplitterState extends State<BillSplitter> {
           scrollDirection: Axis.vertical,
           padding: EdgeInsets.all(20.5),
           children: [
-            // this is the first box
             Container(
               width: 150,
               height: 150,
@@ -45,6 +43,19 @@ class _BillSplitterState extends State<BillSplitter> {
                 ),
               ),
             ),
+            TextField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                style: TextStyle(color: Colors.grey),
+                decoration: InputDecoration(
+                    prefixText: "Bill Amount",
+                    prefixIcon: Icon(Icons.attach_money)),
+                onChanged: (String value) {
+                  try {
+                    _billAmount = double.parse(value);
+                  } catch (expection) {
+                    _billAmount = 0.0;
+                  }
+                }),
 
             // this is your second box
             Container(
@@ -55,24 +66,9 @@ class _BillSplitterState extends State<BillSplitter> {
                   border: Border.all(
                       color: Colors.blueGrey.shade100,
                       style: BorderStyle.solid),
-                  borderRadius: BorderRadius.circular(12)),
+                  borderRadius: BorderRadius.circular(40)),
               child: Column(
-                children: <Widget>[
-                  TextField(
-                      keyboardType:
-                          TextInputType.numberWithOptions(decimal: true),
-                      style: TextStyle(color: Colors.grey),
-                      decoration: InputDecoration(
-                          prefixText: "Bill Amount",
-                          prefixIcon: Icon(Icons.attach_money)),
-                      onChanged: (String value) {
-                        try {
-                          _billAmount = double.parse(value);
-                        } catch (expection) {
-                          _billAmount = 0.0;
-                        }
-                      }),
-                ],
+                children: <Widget>[],
               ),
             )
           ],
