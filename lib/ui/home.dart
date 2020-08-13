@@ -18,6 +18,7 @@ List quotes = [
   "No law’s gonna change us, we have to change us. – Macklemore and Ryan Lewis, Same Love",
   "It’s only human to express the way you really feel, but that same humanity is my Achilles’ heel. A leopard can’t change his spots and never will; So, I’m forever I’ll, now I can never chill. – Black Thought",
   "And the land of the free is full of free loaders, leave us dead in the street to be your organ donors. – Joey Badass - Land of the Free",
+  "this is just a test – Stephane - Comfree",
 ];
 
 class _WisdomState extends State<Wisdom> {
@@ -28,13 +29,42 @@ class _WisdomState extends State<Wisdom> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(quotes[_index %
-                quotes
-                    .length]), // this allows the index to loop based on the lenght
-            FlatButton.icon(
-                onPressed: _showQuote,
-                icon: Icon(Icons.music_note),
-                label: Text("Inspire with a verse!"))
+            Expanded(
+              child: Center(
+                child: Container(
+                  width: 375,
+                  height: 200,
+                  margin: EdgeInsets.all(5.0),
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(10.5)),
+                  child: Center(
+                    child: Text(
+                      quotes[_index % quotes.length],
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontStyle: FontStyle.italic),
+                    ),
+                  ),
+                ),
+              ),
+            ), // this allows the index to loop based on the lenght
+            Divider(
+              thickness: 2.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: FlatButton.icon(
+                  onPressed: _showQuote,
+                  color: Colors.blueAccent.shade200,
+                  icon: Icon(Icons.music_note),
+                  label: Text(
+                    "Inspire me!",
+                    style: TextStyle(fontSize: 18.8, color: Colors.white),
+                  )),
+            ),
+            Spacer()
           ],
         ),
       ),
