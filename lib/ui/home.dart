@@ -37,13 +37,31 @@ class _BillSplitterState extends State<BillSplitter> {
               width: 150,
               height: 150,
               decoration: BoxDecoration(
-                color: Colors.purpleAccent.shade100,
+                color: Colors.purpleAccent.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text("Total Per Person"), Text("\$123456")],
+                  children: [
+                    Text(
+                      "Total Per Person",
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 15,
+                          color: Colors.purple.shade500),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text(
+                        "\$123456",
+                        style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.purple.shade500),
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),
@@ -84,6 +102,8 @@ class _BillSplitterState extends State<BillSplitter> {
                       ),
                       Row(
                         children: [
+                          // this is your - button
+
                           InkWell(
                             onTap: () {
                               setState(() {
@@ -112,6 +132,7 @@ class _BillSplitterState extends State<BillSplitter> {
                               ),
                             ),
                           ),
+
                           Text(
                             "$_personCounter",
                             style: TextStyle(
@@ -119,6 +140,9 @@ class _BillSplitterState extends State<BillSplitter> {
                                 fontWeight: FontWeight.bold,
                                 fontSize: 17.0),
                           ),
+
+                          // this is your + button
+
                           InkWell(
                             onTap: () {
                               setState(() {
@@ -146,6 +170,53 @@ class _BillSplitterState extends State<BillSplitter> {
                         ],
                       )
                     ],
+                  ),
+                  // Tip
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Tip",
+                        style: TextStyle(color: Colors.grey.shade700),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "\$ ${calculateTotalTip(_billAmount, _personCounter, _tipPercentage)}",
+                          style: TextStyle(
+                              color: Colors.purple.shade400,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17.0),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  // Slider
+
+                  Column(
+                    children: [
+                      Text(
+                        "$_tipPercentage %",
+                        style: TextStyle(
+                            color: Colors.purple.shade400,
+                            fontSize: 17.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Slider(
+                          min: 0,
+                          max: 100,
+                          activeColor: Colors.purple,
+                          inactiveColor: Colors.grey,
+                          // divisions: 10, // this sets ranges and divides by the number set
+                          value: _tipPercentage.toDouble(),
+                          onChanged: (double newValue) {
+                            setState(() {
+                              _tipPercentage = newValue.round();
+                            });
+                          })
+                    ],
                   )
                 ],
               ),
@@ -154,6 +225,21 @@ class _BillSplitterState extends State<BillSplitter> {
         ),
       ),
     );
+  }
+
+  calculateTotalPerPerson(double totalTip, double billamount, int splitBy) {
+    var totalPerPerson = (totalTip + billamount) / splitBy;
+    return totalPerPerson;
+  }
+
+  calculateTotalTip(double billAmount, int splitBy, int tipPercentage) {
+    double totalTip = 0.0;
+
+    if (billAmount < 0 || billAmount.toString().isEmpty || billAmount == null) {
+      // no go!
+    } else {
+      totalTip = (billAmount * tipPercentage) / 100;
+    }
   }
 }
 

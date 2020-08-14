@@ -12,6 +12,8 @@ class BillSplitter extends StatefulWidget {
   _BillSplitterState createState() => _BillSplitterState();
 }
 
+// these are private values
+
 int _tipPercentage = 0;
 int _personCounter = 1;
 double _billAmount = 0.0;
@@ -20,6 +22,7 @@ class _BillSplitterState extends State<BillSplitter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //this is the body of your app
       body: Container(
         margin: // this acts as vh vw would in css
             EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.080),
@@ -29,6 +32,7 @@ class _BillSplitterState extends State<BillSplitter> {
           scrollDirection: Axis.vertical,
           padding: EdgeInsets.all(20.5),
           children: [
+            // this is the first box
             Container(
               width: 150,
               height: 150,
@@ -43,19 +47,6 @@ class _BillSplitterState extends State<BillSplitter> {
                 ),
               ),
             ),
-            TextField(
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
-                style: TextStyle(color: Colors.grey),
-                decoration: InputDecoration(
-                    prefixText: "Bill Amount",
-                    prefixIcon: Icon(Icons.attach_money)),
-                onChanged: (String value) {
-                  try {
-                    _billAmount = double.parse(value);
-                  } catch (expection) {
-                    _billAmount = 0.0;
-                  }
-                }),
 
             // this is your second box
             Container(
@@ -66,9 +57,103 @@ class _BillSplitterState extends State<BillSplitter> {
                   border: Border.all(
                       color: Colors.blueGrey.shade100,
                       style: BorderStyle.solid),
-                  borderRadius: BorderRadius.circular(40)),
+                  borderRadius: BorderRadius.circular(12)),
               child: Column(
-                children: <Widget>[],
+                children: <Widget>[
+                  TextField(
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    style: TextStyle(color: Colors.purple),
+                    decoration: InputDecoration(
+                        prefixText: "Bill Amount",
+                        prefixIcon: Icon(Icons.attach_money)),
+                    onChanged: (String value) {
+                      try {
+                        _billAmount = double.parse(value);
+                      } catch (expection) {
+                        _billAmount = 0.0;
+                      }
+                    },
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Split",
+                        style: TextStyle(color: Colors.grey.shade700),
+                      ),
+                      Row(
+                        children: [
+                          // this is your - button
+
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                if (_personCounter > 1) {
+                                  _personCounter--;
+                                } else {
+                                  // do nothing
+                                }
+                              });
+                            },
+                            child: Container(
+                              width: 40.0,
+                              height: 40.0,
+                              margin: EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7.0),
+                                  color: Colors.pink.withOpacity(0.1)),
+                              child: Center(
+                                child: Text(
+                                  "-",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17.0),
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          Text(
+                            "$_personCounter",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17.0),
+                          ),
+
+                          // this is your + button
+
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                _personCounter++;
+                              });
+                            },
+                            child: Container(
+                              width: 40.0,
+                              height: 40.0,
+                              margin: EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7.0),
+                                  color: Colors.pink.withOpacity(0.1)),
+                              child: Center(
+                                child: Text(
+                                  "+",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  )
+                ],
               ),
             )
           ],
